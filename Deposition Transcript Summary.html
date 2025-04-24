@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deposition Summary: Joseph Nadeau (Vol. II)</title>
+    <style>
+        /* Reset and Base Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.7;
+            color: #333;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px; /* Add padding for small screens */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px; /* Increased width for wider content area */
+            margin: 0 auto;
+            padding: 0 20px; /* Padding inside the container */
+        }
+
+        /* Hero Section */
+        header.hero {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            width: 100%; /* Ensure header takes full width */
+        }
+
+        header.hero h1 {
+            font-size: 2.5em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #2d3748; /* Darker gray */
+        }
+
+        header.hero .deposition-date {
+            font-size: 1.1em;
+            color: #718096; /* Medium gray */
+        }
+
+        /* Table of Contents */
+        nav#toc {
+            margin-bottom: 40px;
+            padding: 20px;
+           /* border: 1px solid #eee; */
+           /* border-radius: 8px; */
+           /* background-color: #fdfdfd; */
+            width: 100%; /* Ensure nav takes full width */
+            max-width: 1000px; /* Match container */
+        }
+
+        nav#toc h2 {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2d3748;
+            /* border-bottom: 1px solid #eee; */
+            padding-bottom: 10px;
+        }
+
+        nav#toc ul {
+            list-style: none;
+            padding-left: 0; /* Remove default padding */
+        }
+
+        nav#toc ul li {
+            margin-bottom: 10px;
+        }
+         nav#toc ul li ul {
+             padding-left: 25px; /* Indent sub-items */
+             margin-top: 8px;
+         }
+         nav#toc ul li ul li {
+              margin-bottom: 6px;
+              list-style-type: circle;
+              color: #1E948E; /* Teal bullet */
+          }
+         nav#toc ul li ul li a {
+              color: #4a5568; /* Slightly lighter color for sub-items */
+              font-weight: 400;
+          }
+
+
+        nav#toc a {
+            text-decoration: none;
+            color: #1E948E; /* Teal */
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        nav#toc a:hover,
+        nav#toc a:focus {
+            color: #167470; /* Darker teal */
+            text-decoration: underline;
+        }
+
+        /* Main Content */
+        main {
+            width: 100%;
+        }
+
+        section, article {
+            margin-bottom: 40px;
+        }
+
+        /* Headings */
+        h2 { /* Section Titles */
+            font-size: 1.8em;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #2d3748;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        h3 { /* Examination Titles */
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #4a5568; /* Slightly lighter than h2 */
+        }
+
+        h4 { /* Theme Titles */
+             font-size: 1.1em;
+             font-weight: 600;
+             margin-top: 25px;
+             margin-bottom: 10px;
+             color: #4a5568;
+             /* text-transform: uppercase; */
+             /* letter-spacing: 0.5px; */
+         }
+
+
+        /* Paragraphs and Lists */
+        p, ul {
+            margin-bottom: 1.2em;
+            color: #4a5568; /* Slightly lighter text */
+        }
+
+        ul {
+            padding-left: 25px; /* Indentation for bullets */
+            list-style-position: outside;
+        }
+
+        li {
+            margin-bottom: 0.6em;
+        }
+
+        strong {
+             font-weight: 600;
+             color: #2d3748;
+         }
+
+        /* Metadata Table */
+        table.metadata {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        table.metadata th,
+        table.metadata td {
+            text-align: left;
+            padding: 12px 8px;
+            border-bottom: 1px solid #eee; /* Subtle row separators */
+            vertical-align: top;
+        }
+
+        table.metadata th {
+            font-weight: 600;
+            width: 30%; /* Adjust label column width */
+            color: #2d3748;
+        }
+        table.metadata td {
+            color: #4a5568;
+        }
+
+
+        /* Blockquotes */
+        blockquote {
+            margin: 1.5em 0 1.5em 10px; /* Adjusted margin */
+            padding: 12px 20px;
+            border-left: 4px solid #1E948E; /* Teal bar */
+            background-color: #f8f9fa; /* Very light background */
+            font-style: italic;
+            color: #555;
+            border-radius: 4px;
+        }
+        blockquote p {
+             margin-bottom: 0.5em; /* Spacing within blockquote */
+         }
+
+        /* Page References */
+        span.page-ref {
+            font-size: 0.8em;
+            color: #888; /* Lighter gray */
+            margin-left: 4px;
+            font-style: normal;
+            white-space: nowrap; /* Prevent breaking */
+            background-color: #f0f0f0; /* Subtle background */
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        /* Divider */
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #e2e8f0; /* Light gray */
+            margin: 50px 0;
+        }
+
+        /* Links in main content */
+        main a {
+            color: #1E948E;
+            text-decoration: none;
+        }
+        main a:hover,
+        main a:focus {
+            text-decoration: underline;
+            color: #167470;
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                 padding: 0 15px;
+             }
+
+            header.hero h1 {
+                font-size: 2em;
+            }
+            header.hero .deposition-date {
+                 font-size: 1em;
+             }
+
+            h2 { font-size: 1.6em; }
+            h3 { font-size: 1.3em; }
+            h4 { font-size: 1.05em; }
+
+            table.metadata th {
+                width: 35%; /* Slightly more space for labels on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+             header.hero h1 {
+                 font-size: 1.8em;
+             }
+             h2 { font-size: 1.4em; }
+             h3 { font-size: 1.2em; }
+             h4 { font-size: 1em; }
+
+             table.metadata th, table.metadata td {
+                 padding: 10px 5px;
+             }
+             ul {
+                  padding-left: 20px;
+              }
+         }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <h1>Deposition Summary</h1>
+        <p class="deposition-date">Joseph Nadeau (Volume II) &mdash; June 24, 2013</p>
+    </header>
+
+    <div class="container">
+        <nav id="toc">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#metadata">Case Information & Metadata</a></li>
+                <li><a href="#overall-summary">Overall Summary</a></li>
+                <li>
+                    <a href="#detailed-summary">Detailed Summary</a>
+                    <ul>
+                         <li>
+                            <a href="#exam-pirozzolo">Examination by Mr. Pirozzolo (Emhart)</a>
+                             <ul>
+                                 <li><a href="#theme-pirozzolo-objective">Examiner's Objective & Success Assessment</a></li>
+                                 <li><a href="#theme-pirozzolo-dates">Employment Dates & Duration</a></li>
+                                 <li><a href="#theme-pirozzolo-hex">Hexachlorophene Production</a></li>
+                                 <li><a href="#theme-pirozzolo-building">Main Building Details</a></li>
+                                 <li><a href="#theme-pirozzolo-tanks">Storage Tanks</a></li>
+                                 <li><a href="#theme-pirozzolo-layout">Site Layout (Using Exhibit 8)</a></li>
+                                 <li><a href="#theme-pirozzolo-disposal">Waste Disposal (Solids)</a></li>
+                                 <li><a href="#theme-pirozzolo-drums">Drum Reconditioning</a></li>
+                                 <li><a href="#theme-pirozzolo-drains">French Drains & Discharges</a></li>
+                             </ul>
+                        </li>
+                        <li>
+                            <a href="#exam-baroni">Examination by Ms. Baroni (NECC)</a>
+                             <ul>
+                                 <li><a href="#theme-baroni-objective">Examiner's Objective & Success Assessment</a></li>
+                                 <li><a href="#theme-baroni-consistency">Consistency of Prior Trial Testimony</a></li>
+                                 <li><a href="#theme-baroni-location">Location of Work (Primarily Indoors)</a></li>
+                             </ul>
+                        </li>
+                        <li>
+                            <a href="#exam-bryan">Examination by Mr. Bryan (US DOJ)</a>
+                             <ul>
+                                 <li><a href="#theme-bryan-objective">Examiner's Objective & Success Assessment</a></li>
+                                 <li><a href="#theme-bryan-dates">Employment Dates Confirmation</a></li>
+                                 <li><a href="#theme-bryan-interchangeable">Joint Operations/Ownership ("Interchangeable" Employees)</a></li>
+                                 <li><a href="#theme-bryan-tower">Texas Tower Description</a></li>
+                                 <li><a href="#theme-bryan-drains">French Drains & Tailrace Observations</a></li>
+                                 <li><a href="#theme-bryan-liners">Drum Liners (Presence and Disposal at NECC)</a></li>
+                             </ul>
+                        </li>
+                        <li>
+                            <a href="#exam-pirozzolo-reexam">Re-Examination by Mr. Pirozzolo (Emhart)</a>
+                             <ul>
+                                 <li><a href="#theme-pirozzolo-reexam-objective">Examiner's Objective & Success Assessment</a></li>
+                                 <li><a href="#theme-pirozzolo-reexam-dioxin">Knowledge of Dioxin & Chemistry</a></li>
+                                 <li><a href="#theme-pirozzolo-reexam-role">Role and Knowledge Limitations</a></li>
+                             </ul>
+                        </li>
+                    </ul>
+                </li>
+                 <li><a href="#adjournment">Adjournment</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <section id="metadata">
+                <h2>Case Information & Metadata</h2>
+                <table class="metadata">
+                    <tbody>
+                        <tr><th>Deposition Of</th><td>Joseph Nadeau (Volume II - Continued)</td></tr>
+                        <tr><th>Case Name</th><td>EMHART INDUSTRIES, INC. v. NEW ENGLAND CONTAINER COMPANY, INC., et al.; Consolidated with EMHART INDUSTRIES, INC. v. UNITED STATES DEPARTMENT OF THE AIR FORCE, et al. (Third-Party Action: BLACK & DECKER, INC.)</td></tr>
+                        <tr><th>Case Numbers</th><td>C.A. 06-218-S; C.A. 11-023-S (Consolidated)</td></tr>
+                        <tr><th>Court</th><td>United States District Court for the District of Rhode Island</td></tr>
+                        <tr><th>Date & Time</th><td>Monday, June 24, 2013, 1:00 P.M.</td></tr>
+                        <tr><th>Location</th><td>Offices of Duffy & Sweeney, LTD, 1800 Financial Plaza, Providence, RI</td></tr>
+                        <tr><th>Deponent Status</th><td>Witness</td></tr>
+                        <tr><th>Court Reporter</th><td>Vivian S. Dafoulas, RMR/CRR</td></tr>
+                        <tr><th>Examined By</th><td>Mr. Jack R. Pirozzolo (Foley Hoag LLP for Emhart Industries, Inc.)<br>Ms. Megan Baroni (Robinson & Cole LLP for New England Container Company, Inc.)<br>Mr. Patrick B. Bryan (U.S. Department of Justice for USAF)</td></tr>
+                        <tr><th>Also Present (Partial)</th><td>Brian Henninger (Foley Hoag), Joy Sun (EPA), John Ferroli, W. Darrel Johnson, Andrea Leshak, Tiffany Ikeda (DOJ Interns - Via Telephone)</td></tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr>
+
+            <section id="overall-summary">
+                <h2>Overall Summary</h2>
+                <p>This deposition volume (Volume II) continues the examination of Joseph Nadeau regarding his employment as a laborer at the Centredale site, operated by Metro-Atlantic Chemical Company and/or New England Container Company (NECC), during the early to mid-1960s. Having been previously deposed (in 2002 and 2008) and having testified at trial (in 2006), much of this session involved reviewing and confirming or clarifying that prior testimony, often prompted by examiners presenting transcripts or exhibits.</p>
+                <p>A recurring theme is Mr. Nadeau's admittedly "fuzzy" or "foggy" memory of events occurring approximately 50 years prior. He often deferred to his prior, closer-in-time testimony (particularly from 2002 and 2006) as likely being more accurate than his current independent recollection. However, he did provide present-day descriptions and clarifications, especially when guided by a site map marked during his 2008 deposition (Exhibit 8).</p>
+                <p>Key areas explored include:</p>
+                <ul>
+                    <li><strong>Timeline of Employment:</strong> Worked part-time summer jobs (~1962-1965) while in high school. Believes NECC work was ~'62/'63, Metro-Atlantic primarily '64-'65, ending August 1965 upon military draft.</li>
+                    <li><strong>Site Operations & Layout:</strong> Used a site map (Exhibit 8) to identify and describe functions of: office, process areas, shipping, outdoor storage tanks, indoor filter presses (distinct "Reserve Salt" and "40-S"), separate maintenance/salt drying building, the "Texas Tower" (associated with hexachlorophene), and extensive drum handling areas (loading, warehouse, paint station, burn pit/furnace, wash station, outdoor storage, "dump" area).</li>
+                    <li><strong>Waste Handling & Discharges:</strong> Described basement French drains for washdowns. Reaffirmed prior testimony that solid wastes (filter cake, chipped material) likely went into an on-site Dumpster with empty bags. Confirmed prior testimony about removing plastic liners from drums at NECC, which were temporarily discarded on the ground, collected, and potentially disposed of in the dump area. Consistently maintained (based on prior testimony and current recall) that basement wash water via French drains went "outside" towards the tailrace/river, not a sewer. Clarified that while initially calling his observation of the discharge point an "assumption" in 2002, he now recalls actually seeing the discharge exit the building. Confirmed observing the tailrace become murky at times.</li>
+                    <li><strong>Hexachlorophene:</strong> Stood by prior testimony estimating hexachlorophene manufacture in the "Texas Tower" for ~8-9 months before he left in August 1965.</li>
+                    <li><strong>Relationship Between Companies:</strong> Perceived Metro-Atlantic and NECC as interconnected operations under related families (Buonannos), sharing resources like "interchangeable" maintenance staff.</li>
+                    <li><strong>Knowledge Limitations:</strong> Emphasized role as a laborer, lack of chemical knowledge (didn't recognize "dioxin" term), and no knowledge of corporate structure, accounting, or property lines.</li>
+                </ul>
+                 <p>Overall, the deposition aimed to solidify Mr. Nadeau's recollections, often via confirmation of prior sworn testimony, regarding operational practices, site layout, and waste handling. The testimony highlighted both the specific details he could recall or confirm and the admitted limitations of his memory and knowledge after five decades. Frequent objections were raised by counsel regarding vagueness, leading questions, foundation, and the use of prior testimony.</p>
+            </section>
+
+            <hr>
+
+            <section id="detailed-summary">
+                <h2>Detailed Summary</h2>
+
+                <article id="exam-pirozzolo">
+                    <h3>Examination by Mr. Pirozzolo (Emhart)</h3>
+
+                    <h4 id="theme-pirozzolo-objective">Examiner's Objective & Success Assessment</h4>
+                    <p>Mr. Pirozzolo aimed to establish the timeline of Mr. Nadeau's employment, confirm details from his prior deposition (Exhibit 1) and trial testimony regarding specific operations (hexachlorophene production, waste handling), clarify the physical layout and processes using a site map (Exhibit 8), and probe his observations of discharges from the facility's French drains. Mr. Pirozzolo was largely successful in having Mr. Nadeau confirm his prior testimony on key points and effectively used the site map (Exhibit 8) to elicit detailed descriptions of operational areas. However, the witness frequently qualified his answers due to the passage of time ("fuzzy," "foggy memory," "guessing"), sometimes relying more on the presented prior testimony than independent recall. Mr. Pirozzolo also highlighted a potential evolution in the witness's certainty regarding whether he directly *saw* discharges versus assuming they occurred.</p>
+
+                    <h4 id="theme-pirozzolo-dates">Employment Dates & Duration</h4>
+                    <ul>
+                        <li>Worked summer/part-time jobs between '62 and '65 while in Ponaganset High School (age 16/17 range).<span class="page-ref">(p. 151)</span></li>
+                        <li>Believes NECC work was one summer ('62 or '63); Metro-Atlantic primarily '64 and '65.<span class="page-ref">(p. 152)</span>
+                            <blockquote>A. I think the last two stints were at Metro-Atlantic. I think '64 through '65 was at Metro for sure. '63, '64 may have also been with Metro-Atlantic. Not too sure of that, and then '62 I believe was -- '62, '63 was the New England Container.<span class="page-ref">(p. 152)</span></blockquote>
+                        </li>
+                        <li>Last day working at Centredale site was around August 1965, before military draft.<span class="page-ref">(p. 153)</span></li>
+                    </ul>
+
+                    <h4 id="theme-pirozzolo-hex">Hexachlorophene Production</h4>
+                    <ul>
+                        <li>Recalled the "Texas Tower" building constructed during a summer he wasn't there.<span class="page-ref">(p. 153)</span></li>
+                        <li>Confirmed prior deposition testimony (Exhibit 1, p. 59, Dec 17, 2002) estimating hexachlorophene manufacture for ~8-9 months before he left.<span class="page-ref">(pp. 154, 156)</span>
+                             <blockquote>Q. It would be your testimony that on December 17, 2002 you testified truthfully to the best of your recollection? A. Yes, I did.<span class="page-ref">(p. 156)</span></blockquote>
+                             <blockquote>(Reading prior testimony) "Answer: I was there about a year full time. I'm guessing maybe eight, nine months maybe. It wasn't there full time. I can't remember. I know it was there for a good eight months anyhow."<span class="page-ref">(p. 156)</span></blockquote>
+                        </li>
+                        <li>Stated memory was better in 2002 but stands by truthfulness of prior testimony.<span class="page-ref">(p. 156)</span></li>
+                    </ul>
+
+                    <h4 id="theme-pirozzolo-building">Main Building Details (Floors, Drains, Windows, Slope)</h4>
+                     <ul>
+                         <li>Main building: 3-4 floors, including basement.<span class="page-ref">(p. 157)</span></li>
+                         <li>French drains located in basement level.<span class="page-ref">(p. 157)</span></li>
+                         <li>Land sloped slightly; parking lot uphill.<span class="page-ref">(p. 158)</span></li>
+                         <li>Basement below grade but had windows, approx. 3 ft off floor, sitting on concrete foundation wall.<span class="page-ref">(p. 158)</span></li>
+                         <li>Couldn't recall window size or looking out them.<span class="page-ref">(pp. 158-159)</span></li>
+                     </ul>
+
+
+                    <h4 id="theme-pirozzolo-tanks">Storage Tanks</h4>
+                    <ul>
+                        <li>Vertical storage tanks located outside main building.<span class="page-ref">(pp. 159-160)</span></li>
+                        <li>Recalled large cylinders (thousands of gallons), varying sizes, taller than wide.<span class="page-ref">(p. 160)</span></li>
+                        <li>Estimated 4-5 tanks.<span class="page-ref">(p. 160)</span></li>
+                        <li>Filled via pipes (from internal production or external truck deliveries).<span class="page-ref">(pp. 160, 162-164)</span></li>
+                        <li>Orientation: Back to Smith St -> tanks/building on left, river/tailrace on right.<span class="page-ref">(p. 161)</span></li>
+                        <li>Tanker trucks delivered via ports on outside (likely west) wall, accessed from driveway (right side of building).<span class="page-ref">(pp. 163-164)</span> Some deliveries used flexible hose to holding tank.<span class="page-ref">(p. 164)</span></li>
+                    </ul>
+
+                    <h4 id="theme-pirozzolo-layout">Site Layout (Using Exhibit 8 - Large Sanborn Map/Plan)</h4>
+                     <ul>
+                         <li>Reviewed Exhibit 8 (map from 2008 depo). Viewed Metro-Atlantic/NECC as one entity under Buonannos.<span class="page-ref">(pp. 168-171)</span></li>
+                         <li><strong>Office:</strong> First building left off Rt 44 (Smith St), admin/secretary.<span class="page-ref">(p. 170)</span></li>
+                         <li><strong>Process Area No. 1:</strong> Vague; maybe Joyal/Daley worked with vats.<span class="page-ref">(p. 171)</span></li>
+                         <li><strong>Shipping:</strong> Truck deliveries (raw materials) / pickups (finished goods).<span class="page-ref">(p. 172)</span></li>
+                         <li><strong>Connection:</strong> Liquid intake point(s) from trucks, along west wall.<span class="page-ref">(pp. 172-173)</span></li>
+                         <li><strong>Storage tanks:</strong> Outside, along "back" (south?) wall, connected by catwalk.<span class="page-ref">(pp. 173-174)</span></li>
+                         <li><strong>Reserve salt filter press:</strong> Inside basement near entry door; marked 2 press locations.<span class="page-ref">(pp. 174-175)</span> Later corrected a nearby line as the French drain path.<span class="page-ref">(p. 176)</span></li>
+                         <li><strong>Process area No. 2:</strong> Initially basement work area (drum transfers, storage).<span class="page-ref">(pp. 176-177)</span> Later guessed label might refer to upper floor mixing/blending.<span class="page-ref">(p. 177)</span></li>
+                         <li><strong>Dumpster / "40-S":</strong> Dumpster outside below large doors. "40-S" label = separate 40-S filter press in basement near reserve salt press.<span class="page-ref">(pp. 177-179)</span></li>
+                         <li><strong>Driveway:</strong> Orange line west of main building.<span class="page-ref">(p. 179)</span></li>
+                         <li><strong>Maintenance/Salt Drying Building:</strong> Separate building west of driveway.<span class="page-ref">(p. 180)</span></li>
+                         <li><strong>Texas Tower:</strong> Location where hexachlorophene made.<span class="page-ref">(p. 180)</span></li>
+                         <li><strong>Loading area (Orange):</strong> East of Texas Tower, NECC barrel handling.<span class="page-ref">(p. 181)</span></li>
+                         <li><strong>Warehouse area (Orange Line):</strong> Inside building drum storage.<span class="page-ref">(pp. 181-182)</span></li>
+                         <li><strong>Paint station (Arrow):</strong> Inside area for spray painting drums.<span class="page-ref">(p. 182)</span></li>
+                         <li><strong>Drum removal / Burn pit / Burner:</strong> South area for reconditioning. Drums on track ("Pit"), through fire ("Burner"), then removed ("Drum removal").<span class="page-ref">(pp. 183-185)</span></li>
+                         <li><strong>Wash station (Trapezoidal Bldg):</strong> For cleaning closed-head ("tight") drums with water/steam; drain beneath rack.<span class="page-ref">(p. 186)</span> Nadeau sandblasted nearby.<span class="page-ref">(p. 187)</span></li>
+                         <li><strong>Drum storage:</strong> Area along river, drums stacked rows 3-5 high.<span class="page-ref">(pp. 187-188)</span></li>
+                         <li><strong>"To dump":</strong> Arrow points to dump area at end of peninsula.<span class="page-ref">(p. 188)</span></li>
+                     </ul>
+
+                    <h4 id="theme-pirozzolo-disposal">Waste Disposal (Filter Cake, Chipped Material, Dumpster Contents)</h4>
+                     <ul>
+                         <li>Empty raw material bags thrown into Dumpster.<span class="page-ref">(p. 165)</span></li>
+                         <li>Filter press cleanings might also go into Dumpster.<span class="page-ref">(p. 166)</span></li>
+                         <li>Solidified material chipped from vessels put in buckets. Based on prior depo (Exh 1, p. 43), likely put in barrel, possibly then Dumpster; uncertain now.<span class="page-ref">(pp. 166-167)</span></li>
+                     </ul>
+
+                     <h4 id="theme-pirozzolo-drums">Drum Reconditioning (Washing, Burning, Re-shaping)</h4>
+                      <ul>
+                          <li>Closed-head ("tight") drums cleaned internally at wash station (water/steam).<span class="page-ref">(p. 186)</span></li>
+                          <li>Other drums went through burn pit/burner to remove residue.<span class="page-ref">(p. 184)</span></li>
+                          <li>Post-cleaning/burning: inspected; if reusable, reshaped, painted, stored.<span class="page-ref">(p. 189)</span></li>
+                          <li>"Leaker" drums unfit for liquids sold as burn barrels.<span class="page-ref">(p. 190)</span></li>
+                          <li>Assumed some drums discarded in dump area; unsure.<span class="page-ref">(p. 190)</span></li>
+                      </ul>
+
+                    <h4 id="theme-pirozzolo-drains">French Drains & Discharges</h4>
+                    <ul>
+                        <li>Basement French drains ~1 ft wide, some grated.<span class="page-ref">(pp. 164-165)</span></li>
+                        <li>Confirmed prior trial testimony (Exhibit 4): basement wash water via French drains went "outside" to tailrace/river, not sewer.<span class="page-ref">(pp. 191-193, reading pp. 199-201)</span></li>
+                        <li>Regarding *seeing* discharge: Confirmed 2002 depo (Exh 1, p. 34) where seeing "cutout" called "assumption."<span class="page-ref">(p. 192)</span></li>
+                        <li>However, stated now:
+                            <blockquote>A. Yeah, I remember saying that but the more I think about it now, I do remember in fact it went out. I saw it go out.<span class="page-ref">(p. 192)</span></blockquote>
+                        </li>
+                         <li>Asserted discharge went onto land behind building, then to river; no sewer.<span class="page-ref">(p. 193)</span></li>
+                    </ul>
+                </article>
+
+                <hr>
+
+                 <article id="exam-baroni">
+                     <h3>Examination by Ms. Baroni (NECC)</h3>
+
+                     <h4 id="theme-baroni-objective">Examiner's Objective & Success Assessment</h4>
+                     <p>Ms. Baroni aimed to confirm the consistency of Mr. Nadeau's trial testimony regarding discharges going "outside" and to establish that the vast majority of his work occurred indoors. She achieved these objectives efficiently; the witness confirmed the trial testimony excerpts and agreed that most of his Metro-Atlantic work was inside.</p>
+
+                     <h4 id="theme-baroni-consistency">Consistency of Prior Trial Testimony (French Drain Discharge)</h4>
+                      <ul>
+                          <li>Read trial testimony (Exhibit 4, p. 28-29) covering basement washdown, source (presses, carbon sludge), awareness of discharge to tailrace/river outside, not sewer.<span class="page-ref">(pp. 199-200)</span></li>
+                          <li>Nadeau confirmed giving that testimony and its consistency with current testimony.<span class="page-ref">(p. 201)</span></li>
+                      </ul>
+
+                     <h4 id="theme-baroni-location">Location of Work (Primarily Indoors)</h4>
+                      <ul>
+                          <li>Agreed most Metro-Atlantic work was indoors (main building: blending, tanks, filter press).<span class="page-ref">(p. 201)</span></li>
+                          <li>Smaller portion of time "across the street" (west) in salt drying building.<span class="page-ref">(pp. 201-202)</span></li>
+                          <li>Stated generally nothing to do outside, except brief checks of tanks.<span class="page-ref">(p. 202)</span></li>
+                      </ul>
+                 </article>
+
+                 <hr>
+
+                 <article id="exam-bryan">
+                     <h3>Examination by Mr. Bryan (US Dept. of Air Force/Justice)</h3>
+
+                    <h4 id="theme-bryan-objective">Examiner's Objective & Success Assessment</h4>
+                     <p>Mr. Bryan sought to firmly establish the timeline of employment, clarify the "interchangeable" employees concept, elicit more detail about the Texas Tower's appearance, confirm prior testimony about observing discolored/murky water in the tailrace, and explore the handling of plastic drum liners at NECC. He succeeded in confirming dates using prior testimony, clarifying that "interchangeable" primarily referred to maintenance staff, obtaining a physical description of the Texas Tower, confirming observations of murky water (while adding context of clear water days), and confirming the process for handling drum liners.</p>
+
+                     <h4 id="theme-bryan-dates">Employment Dates Confirmation</h4>
+                      <ul>
+                          <li>Reviewed Dec 17, 2002 depo (Exh 1, p. 29); agreed full-time Metro-Atlantic employment likely June '64 - Aug '65.<span class="page-ref">(pp. 204-205)</span></li>
+                      </ul>
+
+                     <h4 id="theme-bryan-interchangeable">Joint Operations/Ownership ("Interchangeable" Employees)</h4>
+                      <ul>
+                          <li>Reiterated belief families/ownership intertwined; lacked specifics.<span class="page-ref">(p. 205)</span></li>
+                          <li>Reviewed affidavit (Exh 3); confirmed statement some employees worked both facilities, were "interchangeable."<span class="page-ref">(p. 206)</span></li>
+                          <li>Clarified "interchangeable" primarily meant maintenance crew (e.g., Walt Murphy) working under union contract at either site as needed.<span class="page-ref">(pp. 206-207)</span></li>
+                      </ul>
+
+                    <h4 id="theme-bryan-tower">Texas Tower Description</h4>
+                     <ul>
+                         <li>Described as relatively square building, possibly raised on pile-ons, steps on one side.<span class="page-ref">(p. 207)</span></li>
+                         <li>Estimated ~2 stories tall.<span class="page-ref">(p. 207)</span></li>
+                         <li>Never went inside. Didn't appear dilapidated; "just a building." Couldn't recall construction materials; prior plywood guess was based on cost.<span class="page-ref">(p. 208)</span></li>
+                     </ul>
+
+                    <h4 id="theme-bryan-drains">French Drains & Tailrace Observations (Discoloration/Murkiness)</h4>
+                     <ul>
+                         <li>Reviewed Dec 17, 2002 depo (Exh 1, p. 35); confirmed testifying water color changed on floor, washed to drain/exit.<span class="page-ref">(p. 209)</span></li>
+                         <li>Confirmed prior testimony about observing tailrace become murky/change color at times (working at Metro-Atlantic).<span class="page-ref">(p. 210)</span></li>
+                         <li>Described tailrace conditions:
+                            <blockquote>A. There were times when the water was clear. You could see the fish and turtles in it. There were days when you could not do that, you could not see to the bottom of that. It was shallow water, it was not extremely deep. You could not see the bottom.<span class="page-ref">(p. 211)</span></blockquote>
+                          </li>
+                          <li>Couldn't recall seeing flow/ripples; seemed still but assumed connected to river. Hadn't walked down to confluence.<span class="page-ref">(p. 213)</span></li>
+                     </ul>
+
+                    <h4 id="theme-bryan-liners">Drum Liners (Presence and Disposal at NECC)</h4>
+                     <ul>
+                         <li>Residue from cleaning "tight" drums ran onto/under rack at wash station; destination unknown.<span class="page-ref">(pp. 211-212)</span></li>
+                         <li>Confirmed prior testimony (trial, Exh 4, p. 14 re: NECC) some, not all, barrels had plastic liners/rubber gaskets.<span class="page-ref">(pp. 214-215)</span></li>
+                         <li>Recalled (refreshed): Liners sometimes pulled during unloading at NECC, dumped on ground, later collected into another drum; destination of that drum unknown.<span class="page-ref">(p. 215)</span></li>
+                         <li>Confirmed prior depo testimony stating bags/liners taken to "back part" (dump area) and dumped on ground.<span class="page-ref">(p. 216)</span></li>
+                     </ul>
+                 </article>
+
+                <hr>
+
+                <article id="exam-pirozzolo-reexam">
+                    <h3>Re-Examination by Mr. Pirozzolo (Emhart)</h3>
+
+                    <h4 id="theme-pirozzolo-reexam-objective">Examiner's Objective & Success Assessment</h4>
+                     <p>Mr. Pirozzolo aimed to establish Mr. Nadeau's lack of specific knowledge regarding dioxin, chemistry, and the business/property aspects of Metro-Atlantic/NECC, reinforcing his limited role as a laborer. He succeeded in eliciting testimony confirming these limitations.</p>
+
+                    <h4 id="theme-pirozzolo-reexam-dioxin">Knowledge of Dioxin & Chemistry</h4>
+                     <ul>
+                         <li>Heard of dioxin generally, but not recognized as term/substance from employment time.<span class="page-ref">(pp. 216-217)</span></li>
+                         <li>Could not recall seeing any substance identified as containing dioxin.<span class="page-ref">(p. 217)</span></li>
+                         <li>Affirmed not a chemist, lacked chemistry understanding (basic hazard awareness only).<span class="page-ref">(p. 217)</span></li>
+                         <li>Wouldn't know if handled substances contained dioxin.<span class="page-ref">(p. 217)</span></li>
+                     </ul>
+
+                    <h4 id="theme-pirozzolo-reexam-role">Role and Knowledge Limitations (Laborer, No Management/Accounting/Ownership Info)</h4>
+                     <ul>
+                         <li>Confirmed role was laborer.<span class="page-ref">(p. 218)</span></li>
+                         <li>Confirmed no involvement in accounting, management, boards.<span class="page-ref">(p. 218)</span></li>
+                         <li>Confirmed lacked knowledge of specific land ownership/boundaries.<span class="page-ref">(p. 218)</span></li>
+                         <li>These areas outside his duties/job responsibilities.<span class="page-ref">(p. 219)</span></li>
+                     </ul>
+                </article>
+
+            </section>
+
+             <hr>
+
+            <section id="adjournment">
+                 <h2>Adjournment</h2>
+                 <p>The deposition adjourned at 2:25 p.m.<span class="page-ref">(p. 219)</span></p>
+                 <p><em>Duration: Approximately 1 hour, 25 minutes (excluding breaks).</em></p>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+</html>
